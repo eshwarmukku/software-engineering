@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Commerce UI Prototype</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+body {
+  margin: 0;
+  background: #f0f2f5;
+  color: #222;
+}
+header {
+  background: #243b80;
+  color: white;
+  text-align: center;
+  padding: 18px;
+}
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+h2 { margin-top: 0; }
+.designs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.phone {
+  background: white;
+  border: 2px solid #d5d9e2;
+  border-radius: 22px;
+  padding: 16px;
+  max-width: 360px;
+  width: 100%;
+  margin: auto;
+}
+.phone h3 {
+  color: #243b80;
+}
+.search {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ddd;
+  border-radius: 9px;
+  margin-bottom: 12px;
+}
+.banner {
+  background: #e1e8ff;
+  padding: 20px 12px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+.banner h3 { margin: 5px 0; }
+.products {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.product {
+  background: #f5f6fa;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+}
+.product .emoji {
+  font-size: 38px;
+}
+.price {
+  font-weight: bold;
+  color: #243b80;
+}
+button {
+  cursor: pointer;
+  border: none;
+  padding: 11px;
+  border-radius: 8px;
+  background: #243b80;
+  color: white;
+  font-weight: bold;
+}
+button:hover { opacity: .85; }
+.full { width: 100%; margin-top: 12px; }
+.design-b {
+  background: #fff8ee;
+}
+.design-b h3 { color: #b45a18; }
+.design-b .banner {
+  background: #ffe5c8;
+}
+.design-b .price { color: #b45a18; }
+.design-b button {
+  background: #b45a18;
+}
+.feedback {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 25px;
+}
+label {
+  display: block;
+  margin-top: 13px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+select, textarea, input {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+}
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+#result {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #167342;
+}
+.note {
+  color: #666;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>🛍️ ShopEasy</h1>
+  <p>E-Commerce UI Prototype for Stakeholder Approval</p>
+</header>
+
+<div class="container">
+  <h2>Compare Two UI Designs</h2>
+  <p>Review both designs and select the preferred interface.</p>
+
+  <div class="designs">
+
+    <!-- Design A -->
+    <section class="phone">
+      <h3>Design A – Simple & Clean</h3>
+      <input class="search" placeholder="🔍 Search products">
+
+      <div class="banner">
+        <h3>Big Shopping Sale!</h3>
+        <p>Up to 40% off</p>
+        <button onclick="alert('Design A: Shopping offers selected')">
+          Shop Now
+        </button>
+      </div>
+
+      <h4>Popular Products</h4>
+      <div class="products">
+        <div class="product">
+          <div class="emoji">👟</div>
+          <p>Sports Shoes</p>
+          <p class="price">₹1,499</p>
+          <button onclick="addCart('Sports Shoes')">Add</button>
+        </div>
+        <div class="product">
+          <div class="emoji">🎧</div>
+          <p>Headphones</p>
+          <p class="price">₹999</p>
+          <button onclick="addCart('Headphones')">Add</button>
+        </div>
+      </div>
+      <button class="full" onclick="selectDesign('Design A')">
+        Prefer Design A
+      </button>
+    </section>
+
+    <!-- Design B -->
+    <section class="phone design-b">
+      <h3>Design B – Colorful & Promotional</h3>
+      <input class="search" placeholder="🔍 Find your favourite item">
+
+      <div class="banner">
+        <h3>Festive Mega Sale 🎉</h3>
+        <p>Special deals just for you!</p>
+        <button onclick="alert('Design B: Offers selected')">
+          Explore Deals
+        </button>
+      </div>
+
+      <h4>Recommended for You</h4>
+      <div class="products">
+        <div class="product">
+          <div class="emoji">⌚</div>
+          <p>Smart Watch</p>
+          <p class="price">₹1,999</p>
+          <button onclick="addCart('Smart Watch')">Buy</button>
+        </div>
+        <div class="product">
+          <div class="emoji">🎒</div>
+          <p>Travel Bag</p>
+          <p class="price">₹799</p>
+          <button onclick="addCart('Travel Bag')">Buy</button>
+        </div>
+      </div>
+      <button class="full" onclick="selectDesign('Design B')">
+        Prefer Design B
+      </button>
+    </section>
+
+  </div>
+
+  <!-- Stakeholder Feedback -->
+  <section class="feedback">
+    <h2>Stakeholder Feedback Form</h2>
+    <p>Collect opinions before approving the final design.</p>
+
+    <form id="feedbackForm">
+      <label>Stakeholder Name</label>
+      <input id="stakeholder" placeholder="Enter your name" required>
+
+      <label>Preferred UI Design</label>
+      <select id="design" required>
+        <option value="">Select a design</option>
+        <option>Design A</option>
+        <option>Design B</option>
+        <option>Need changes in both</option>
+      </select>
+
+      <label>Ease of Use</label>
+      <select id="ease" required>
+        <option value="">Choose rating</option>
+        <option>Excellent</option>
+        <option>Good</option>
+        <option>Average</option>
+        <option>Poor</option>
+      </select>
+
+      <label>Suggestions or Comments</label>
+      <textarea id="comments"
+        placeholder="What should be improved?"></textarea>
+
+      <button type="submit" class="full">
+        Submit Feedback
+      </button>
+    </form>
+
+    <p id="result"></p>
+    <p class="note">
+      Demonstration only: feedback is displayed in this browser session
+      and is not sent to a server.
+    </p>
+  </section>
+
+  <section class="feedback">
+    <h2>Final Approval</h2>
+    <p>After discussing feedback, record the stakeholder decision.</p>
+    <select id="approval">
+      <option value="">Select approval status</option>
+      <option>Design A Approved</option>
+      <option>Design B Approved</option>
+      <option>Revision Required</option>
+    </select>
+    <button class="full" onclick="approveDesign()">
+      Record Decision
+    </button>
+    <p id="approvalResult"></p>
+  </section>
+</div>
+
+<script>
+let cart = [];
+
+function addCart(product) {
+  cart.push(product);
+  alert(product + " added to the demo cart!");
+}
+
+function selectDesign(design) {
+  document.getElementById("design").value = design;
+  document.getElementById("design").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+document.getElementById("feedbackForm").addEventListener(
+  "submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("stakeholder").value;
+    const design = document.getElementById("design").value;
+    const ease = document.getElementById("ease").value;
+    const comments = document.getElementById("comments").value;
+
+    document.getElementById("result").textContent =
+      "Thank you, " + name + "! Preference: " + design +
+      ". Ease of use: " + ease +
+      ". Feedback: " + (comments || "No comments provided.");
+
+    this.reset();
+  }
+);
+
+function approveDesign() {
+  const decision = document.getElementById("approval").value;
+
+  if (!decision) {
+    alert("Please select an approval status.");
+    return;
+  }
+
+  document.getElementById("approvalResult").textContent =
+    "Stakeholder decision recorded: " + decision;
+}
+</script>
+</body>
+</html>
